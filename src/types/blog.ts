@@ -1,3 +1,8 @@
+export interface BlogImage {
+  url: string;
+  alternativeText?: string | null;
+}
+
 export interface Blog {
   id: number;
   documentId?: string;
@@ -5,7 +10,7 @@ export interface Blog {
   slug: string;
   description: string;
   content: string;
-  image?: string | null;
+  image?: BlogImage | null;
   seoTitle?: string;
   seoDescription?: string;
   createdAt?: string;
@@ -13,7 +18,7 @@ export interface Blog {
   publishedAt?: string;
 }
 export interface BlogsListResponse {
-  data: Blog[];
+  data: unknown[];
   meta?: {
     pagination?: {
       page: number;
