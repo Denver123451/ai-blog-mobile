@@ -1,10 +1,11 @@
+import BlogHero from "@/components/BlogHero";
 import { Text, View } from "@/components/Themed";
 import { useColorScheme } from "@/components/useColorScheme";
 import Colors from "@/constants/Colors";
 import { fetchBlogs } from "@/src/api/blogs";
 import type { Blog } from "@/src/types/blog";
 import { useRouter } from "expo-router";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   ActivityIndicator,
   FlatList,
@@ -32,6 +33,9 @@ export default function BlogListScreen() {
   useEffect(() => {
     void load();
   }, [load]);
+
+  const listHeader = useMemo(() => <BlogHero />, []);
+
   if (loading && blogs.length === 0) {
     return (
       <View style={styles.centered}>
@@ -65,6 +69,7 @@ export default function BlogListScreen() {
   }
   return (
     <FlatList
+      ListHeaderComponent={listHeader}
       data={blogs}
       keyExtractor={(item) => String(item.id)}
       contentContainerStyle={styles.listContent}
