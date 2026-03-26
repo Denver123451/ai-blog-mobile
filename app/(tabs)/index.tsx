@@ -1,3 +1,4 @@
+import BlogCard from "@/components/BlogCard";
 import BlogHero from "@/components/BlogHero";
 import { Text, View } from "@/components/Themed";
 import { useColorScheme } from "@/components/useColorScheme";
@@ -76,20 +77,15 @@ export default function BlogListScreen() {
       refreshing={loading}
       onRefresh={() => void load()}
       renderItem={({ item }) => (
-        <Pressable
+        <BlogCard
+          blog={item}
           onPress={() =>
             router.push({
               pathname: "/blog/[slug]",
               params: { slug: item.slug },
             })
           }
-          style={({ pressed }) => [styles.card, pressed && styles.cardPressed]}
-        >
-          <Text style={styles.title}>{item.name}</Text>
-          <Text style={styles.description} numberOfLines={3}>
-            {item.description}
-          </Text>
-        </Pressable>
+        />
       )}
     />
   );
@@ -126,24 +122,5 @@ const styles = StyleSheet.create({
   listContent: {
     padding: 16,
     gap: 12,
-  },
-  card: {
-    padding: 16,
-    borderRadius: 12,
-    borderWidth: StyleSheet.hairlineWidth,
-    borderColor: "rgba(128,128,128,0.35)",
-  },
-  cardPressed: {
-    opacity: 0.9,
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: "700",
-    marginBottom: 8,
-  },
-  description: {
-    fontSize: 15,
-    opacity: 0.85,
-    lineHeight: 22,
   },
 });
