@@ -1,6 +1,3 @@
-import { useColorScheme as useColorSchemeCore } from 'react-native';
+import { useThemePreference } from "@/src/theme/ThemePreferenceContext";
 
-export const useColorScheme = () => {
-  const coreScheme = useColorSchemeCore();
-  return coreScheme === 'unspecified' ? 'light' : coreScheme;
-};
+export const useColorScheme = () => useThemePreference().resolvedScheme;

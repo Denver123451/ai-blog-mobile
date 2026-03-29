@@ -1,3 +1,5 @@
+import { useColorScheme } from "@/components/useColorScheme";
+import { ThemePreferenceProvider } from "@/src/theme/ThemePreferenceContext";
 import {
   DarkTheme,
   DefaultTheme,
@@ -8,8 +10,6 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import "react-native-reanimated";
-
-import { useColorScheme } from "@/components/useColorScheme";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -48,6 +48,14 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
+  return (
+    <ThemePreferenceProvider>
+      <RootLayoutNavInner />
+    </ThemePreferenceProvider>
+  );
+}
+
+function RootLayoutNavInner() {
   const colorScheme = useColorScheme();
 
   return (

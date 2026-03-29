@@ -1,11 +1,11 @@
-import { Link, Tabs } from "expo-router";
-import { SymbolView } from "expo-symbols";
-import React from "react";
-import { Pressable } from "react-native";
-
+import ThemeCycleButton from "@/components/ThemeCycleButton";
 import { useClientOnlyValue } from "@/components/useClientOnlyValue";
 import { useColorScheme } from "@/components/useColorScheme";
 import Colors from "@/constants/Colors";
+import { Link, Tabs } from "expo-router";
+import { SymbolView } from "expo-symbols";
+import React from "react";
+import { Pressable, View } from "react-native";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -35,18 +35,25 @@ export default function TabLayout() {
             />
           ),
           headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable style={{ marginRight: 15 }}>
-                {({ pressed }) => (
-                  <SymbolView
-                    name={{ ios: "info.circle", android: "info", web: "info" }}
-                    size={25}
-                    tintColor={Colors[colorScheme].text}
-                    style={{ opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <ThemeCycleButton />
+              <Link href="/modal" asChild>
+                <Pressable style={{ marginRight: 15 }}>
+                  {({ pressed }) => (
+                    <SymbolView
+                      name={{
+                        ios: "info.circle",
+                        android: "info",
+                        web: "info",
+                      }}
+                      size={25}
+                      tintColor={Colors[colorScheme].text}
+                      style={{ opacity: pressed ? 0.5 : 1 }}
+                    />
+                  )}
+                </Pressable>
+              </Link>
+            </View>
           ),
         }}
       />
