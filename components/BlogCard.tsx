@@ -44,12 +44,17 @@ export default function BlogCard({ blog, onPress }: Props) {
           />
         )}
         <View style={styles.textBlock}>
-          <Text style={[styles.title, { color: palette.textPrimary }]}>
+          <Text
+            style={[styles.title, { color: palette.textPrimary }]}
+            ellipsizeMode="tail"
+            numberOfLines={1}
+          >
             {blog.name}
           </Text>
           <Text
             style={[styles.description, { color: palette.textSecondary }]}
-            numberOfLines={3}
+            ellipsizeMode="tail"
+            numberOfLines={2}
           >
             {blog.description}
           </Text>
